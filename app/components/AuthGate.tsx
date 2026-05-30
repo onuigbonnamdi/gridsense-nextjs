@@ -13,7 +13,7 @@ const LAUNCHED = process.env.NEXT_PUBLIC_LAUNCHED === "true";
 const WAITLIST_URL = "https://tally.so/r/Y5kYAB";
 // Founder secret unlock: visit gridsense.evervia.co.uk/?dev=YOUR_SECRET_KEY
 // Change this string to your own secret. Keep it out of public docs.
-const DEV_KEY = "gridsense2026#";
+const DEV_KEY = "gridsense2026";
 // ----------------------------------------------------------------------
 
 export function AuthGate() {
