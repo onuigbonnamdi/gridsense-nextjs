@@ -6,9 +6,20 @@ import type { User } from "@supabase/supabase-js";
 import { Dashboard } from "@/app/components/Dashboard";
 import { LandingPage } from "@/app/components/LandingPage";
 
+// --- Pre-launch gating -------------------------------------------------
+// Public sees the landing page only; CTAs go to the Tally waitlist.
+// Flip LAUNCHED to true (or set NEXT_PUBLIC_LAUNCHED=true) to open auth to everyone.
+const LAUNCHED = process.env.NEXT_PUBLIC_LAUNCHED === "true";
+const WAITLIST_URL = "https://tally.so/r/Y5kYAB";
+// Founder secret unlock: visit gridsense.evervia.co.uk/?dev=YOUR_SECRET_KEY
+// Change this string to your own secret. Keep it out of public docs.
+const DEV_KEY = "gridsense2026#";
+// ----------------------------------------------------------------------
+
 export function AuthGate() {
   const [user, setUser] = useState<User | null>(null);
   const [showAuth, setShowAuth] = useState(false);
+  const [devUnlocked, setDevUnlocked] = useState(false);
   const [tab, setTab] = useState<"login" | "signup">("login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,6 +34,32 @@ export function AuthGate() {
     );
     return () => sub.subscription.unsubscribe();
   }, []);
+
+  // Check for founder dev unlock via ?dev=KEY (persisted for the session).
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("dev") === DEV_KEY) {
+        sessionStorage.setItem("gs_dev", "1");
+      }
+      if (sessionStorage.getItem("gs_dev") === "1") {
+        setDevUnlocked(true);
+      }
+    } catch {
+      /* no-op (SSR / storage blocked) */
+    }
+  }, []);
+
+  // Auth is open if the app has launched OR the founder unlocked dev access.
+  const authOpen = LAUNCHED || devUnlocked;
+
+  function handleStart() {
+    if (authOpen) {
+      setShowAuth(true);
+    } else {
+      window.location.href = WAITLIST_URL;
+    }
+  }
 
   async function submit() {
     setErr("");
@@ -65,8 +102,10 @@ export function AuthGate() {
     );
   }
 
-  if (user) return <Dashboard user={user} />;
-  if (!showAuth) return <LandingPage onStart={() => setShowAuth(true)} />;
+  // A logged-in founder always reaches the dashboard. If somehow logged in
+  // pre-launch without dev access, fall through to the landing page.
+  if (user && authOpen) return <Dashboard user={user} />;
+  if (!showAuth) return <LandingPage onStart={handleStart} />;
 
   return (
     <div className="auth">
