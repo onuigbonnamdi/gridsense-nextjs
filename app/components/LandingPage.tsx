@@ -187,9 +187,10 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
         <div className="gs-price-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
           <div>
             <h3>Essential</h3>
-            <strong>{pricingYearly ? "£49.90/yr" : "£4.99/mo"}</strong>
-            {pricingYearly && <div className="yearly-save">Save £9.98</div>}
-            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, margin: "0 0 14px" }}>Everything you need to start saving on energy — right away.</p>
+            <strong>{pricingYearly ? "£29.90/yr" : "£2.99/mo"}</strong>
+            {pricingYearly && <div className="yearly-save">Save £5.98</div>}
+            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, margin: "0 0 6px" }}>Everything you need to start saving on energy — right away.</p>
+            <div style={{ fontSize: 12, fontWeight: 800, color: "#009b84", margin: "0 0 14px" }}>Up to 1 property</div>
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "grid", gap: 10 }}>
               {[
                 "Live UK grid demand feed",
@@ -209,9 +210,10 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
           <div className="featured">
             <em>Most popular</em>
             <h3>Premier</h3>
-            <strong>{pricingYearly ? "£99.90/yr" : "£9.99/mo"}</strong>
-            {pricingYearly && <div className="yearly-save">Save £19.98</div>}
-            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, margin: "0 0 10px" }}>Upload your bill, find overcharges, and get your home energy rating. Pays for itself.</p>
+            <strong>{pricingYearly ? "£59.90/yr" : "£5.99/mo"}</strong>
+            {pricingYearly && <div className="yearly-save">Save £11.98</div>}
+            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, margin: "0 0 6px" }}>Upload your bill, find overcharges, and get your home energy rating. Pays for itself.</p>
+            <div style={{ fontSize: 12, fontWeight: 800, color: "#009b84", margin: "0 0 10px" }}>Up to 3 properties</div>
             <div style={{ background: "#ecfdf7", border: "1px solid rgba(20,184,166,.28)", borderRadius: 10, padding: "10px 12px", fontSize: 12, fontWeight: 900, color: "#009b84", margin: "0 0 14px" }}>Everything in Essential, plus:</div>
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "grid", gap: 10 }}>
               {[
@@ -230,9 +232,10 @@ export function LandingPage({ onStart }: { onStart: () => void }) {
 
           <div>
             <h3>Elite</h3>
-            <strong>{pricingYearly ? "£199.90/yr" : "£19.99/mo"}</strong>
-            {pricingYearly && <div className="yearly-save">Save £39.98</div>}
-            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, margin: "0 0 10px" }}>For landlords and homeowners who want to go further.</p>
+            <strong>{pricingYearly ? "£149.90/yr" : "£14.99/mo"}</strong>
+            {pricingYearly && <div className="yearly-save">Save £29.98</div>}
+            <p style={{ color: "#64748b", fontSize: 13, lineHeight: 1.6, margin: "0 0 6px" }}>For landlords and homeowners who want to go further.</p>
+            <div style={{ fontSize: 12, fontWeight: 800, color: "#009b84", margin: "0 0 10px" }}>Up to 5 properties</div>
             <div style={{ background: "#ecfdf7", border: "1px solid rgba(20,184,166,.28)", borderRadius: 10, padding: "10px 12px", fontSize: 12, fontWeight: 900, color: "#009b84", margin: "0 0 14px" }}>Everything in Premier, plus:</div>
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "grid", gap: 10 }}>
               {[
