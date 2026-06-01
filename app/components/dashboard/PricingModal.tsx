@@ -9,9 +9,10 @@ export function PricingModal({ onClose }: { onClose: () => void }) {
     {
       key: "essential",
       name: "Essential",
-      price: "£4.99",
+      price: "£2.99",
       desc: "Everything you need to start saving on energy — right away.",
       period: "Monthly · cancel any time",
+      coverage: "Up to 1 property",
       features: [
         "Live UK grid demand feed",
         "2-day AI demand forecast (97% accurate)",
@@ -24,10 +25,11 @@ export function PricingModal({ onClose }: { onClose: () => void }) {
     {
       key: "premier",
       name: "Premier",
-      price: "£9.99",
+      price: "£5.99",
       desc: "Upload your bill, find overcharges, and get your home energy rating. Pays for itself.",
       period: "Monthly · cancel any time",
       popular: true,
+      coverage: "Up to 3 properties",
       inherit: "Everything in Essential, plus:",
       features: [
         "Your home's official energy rating by postcode",
@@ -41,9 +43,10 @@ export function PricingModal({ onClose }: { onClose: () => void }) {
     {
       key: "elite",
       name: "Elite",
-      price: "£19.99",
+      price: "£14.99",
       desc: "For landlords and homeowners who want to go further.",
       period: "Monthly · cancel any time",
+      coverage: "Up to 5 properties",
       inherit: "Everything in Premier, plus:",
       features: [
         "AI property upgrade roadmap",
@@ -76,16 +79,17 @@ export function PricingModal({ onClose }: { onClose: () => void }) {
               <p className="plan-desc">{pl.desc}</p>
               <div className="price">
                 {yearly
-                  ? <>£{({ essential: "49.90", premier: "99.90", elite: "199.90" } as any)[pl.key]}<span>/yr</span></>
+                  ? <>£{({ essential: "29.90", premier: "59.90", elite: "149.90" } as any)[pl.key]}<span>/yr</span></>
                   : <>{pl.price}<span>/mo</span></>
                 }
               </div>
               {yearly && (
                 <div className="yearly-save">
-                  Save £{({ essential: "9.98", premier: "19.98", elite: "39.98" } as any)[pl.key]} vs monthly
+                  Save £{({ essential: "5.98", premier: "11.98", elite: "29.98" } as any)[pl.key]} vs monthly
                 </div>
               )}
               <p className="plan-period">{pl.period}</p>
+              {pl.coverage && <div className="plan-coverage">{pl.coverage}</div>}
               {pl.inherit && <div className="plan-inherit">{pl.inherit}</div>}
               <ul className="plan-features">
                 {pl.features.map((f) => <li key={f}>{f}</li>)}
@@ -96,7 +100,7 @@ export function PricingModal({ onClose }: { onClose: () => void }) {
         </div>
         <div style={{ marginTop: 24, padding: "16px 20px", background: "#f8fafc", borderRadius: 14, border: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
           <div>
-            <strong style={{ fontSize: 14 }}>Managing 10+ properties or a business?</strong>
+            <strong style={{ fontSize: 14 }}>Managing 6+ properties or a business?</strong>
             <p style={{ margin: "4px 0 0", fontSize: 13, color: "#64748b" }}>Evervia B2B covers multi-site dashboards, commercial EPC compliance, council & NHS pricing and dedicated account management.</p>
           </div>
           <a href="https://evervia.co.uk/" target="_blank" rel="noreferrer" className="btn outline" style={{ whiteSpace: "nowrap", flexShrink: 0 }}>Visit Evervia →</a>
