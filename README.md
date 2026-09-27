@@ -7,7 +7,7 @@ The production frontend for **GridSense**, the consumer energy intelligence prod
 ## What it does
 
 - **Live UK grid view:** real-time demand, price, frequency, renewable mix, and carbon intensity
-- **48 hour AI demand forecast:** a Random Forest model using weather regressors (validated R² 0.977, MAE 459 MW), retrained weekly
+- **48 hour AI demand forecast:** a Random Forest model using weather regressors (R² 0.9838 and MAE 399 MW under time-series cross-validation), retrained weekly on 18 months of data
 - **Postcode intelligence:** maps a postcode to its DNO region and current Ofgem price cap rates, then lists addresses with their EPC property profile
 - **Peak and off-peak alerts:** the best upcoming windows to shift usage, based on the forecast
 - **Bill intelligence:** users upload an energy bill, an LLM (Claude) extracts consumption and rates, and the system compares actual usage against the EPC baseline and estimates supplier switch savings
